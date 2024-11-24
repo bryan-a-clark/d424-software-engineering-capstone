@@ -7,44 +7,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Please Login</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/js/bootstrap.min.js" defer></script>
 </head>
 <body>
-<h1>Please Log In</h1>
-
+  <div class="mt-5">
+    <div class="card p-3 mx-auto" style="width: 25rem;">
+      <div class="text-center">
+        <form action="/login" method="post">
+          <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
+          <label for="username" class="visually-hidden">
+            Username
+          </label>
+          <input type="text"
+                 class="form-control mb-3"
+                 name="username"
+                 placeholder="Username"
+                 id="username"
+                 value="${user.getUsername()}"
+                 required
+                 autofocus>
+            <label for="password" class="visually-hidden">
+              Password
+            </label>
+            <input type="password"
+                   class="form-control mb-3"
+                   name="password"
+                   placeholder="Password"
+                   id="password"
+                   value="${user.getPassword()}"
+                   required>
+            <input type="hidden" name="${csrfToken.getParameterName()}" value="${csrfToken.getToken()}">
+            <button type="submit" class="btn btn-primary">log in</button>
+        </form>
+      </div>
+    </div>
+  </div>
   @if(error != null)
-    <div>
+    <div class="text-center text-danger">
       ${error}
     </div>
   @endif
-  <div>
-    <form action="/login" method="post">
-      <div>
-        <label for="username">
-          Username
-        </label>
-        <input type="text"
-               name="username"
-               placeholder="Username"
-               id="username"
-               value="${user.getUsername()}">
-      </div>
-      <div>
-        <label for="password">
-          Password
-        </label>
-        <input type="password"
-               name="password"
-               placeholder="Password"
-               id="password"
-               value="${user.getPassword()}">
-      </div>
-      <div>
-        <input type="hidden" name="${csrfToken.getParameterName()}" value="${csrfToken.getToken()}">
-      </div>
-      <div>
-        <button type="submit">log in</button>
-      </div>
-    </form>
-  </div>
 </body>
 </html>
