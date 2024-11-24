@@ -35,3 +35,5 @@ build/
 
 ### JTE ###
 /jte-classes/
+
+/src/main/resources/secrets-dev.properties
