@@ -38,7 +38,8 @@
                    value="${user.getPassword()}"
                    required>
             <input type="hidden" name="${csrfToken.getParameterName()}" value="${csrfToken.getToken()}">
-            <button type="submit" class="btn btn-primary">log in</button>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <a href="/register" class="btn btn-primary">Register</a>
         </form>
       </div>
     </div>
