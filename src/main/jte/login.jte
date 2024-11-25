@@ -7,8 +7,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Please Login</title>
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/js/bootstrap.min.js" defer></script>
+  <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js" defer></script>
 </head>
 <body>
   <div class="mt-5">
@@ -38,7 +38,8 @@
                    value="${user.getPassword()}"
                    required>
             <input type="hidden" name="${csrfToken.getParameterName()}" value="${csrfToken.getToken()}">
-            <button type="submit" class="btn btn-primary">log in</button>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <a href="/register" class="btn btn-primary">Register</a>
         </form>
       </div>
     </div>
