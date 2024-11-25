@@ -1,5 +1,6 @@
 package edu.wgu.activitytracker.config;
 
+import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,7 +20,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                .dispatcherTypeMatchers(DispatcherType.ASYNC, DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
