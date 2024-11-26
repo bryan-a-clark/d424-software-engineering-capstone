@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import validation.UniqueUser;
+import edu.wgu.activitytracker.validation.UniqueUser;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +13,7 @@ import validation.UniqueUser;
 @Setter
 public class UserDto {
 
-    private long id;
+    private Integer id;
     @NotBlank(message = "Username is required")
     @UniqueUser
     private String username;
