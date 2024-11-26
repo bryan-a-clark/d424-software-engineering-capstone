@@ -14,9 +14,11 @@ import edu.wgu.activitytracker.validation.UniqueUser;
 public class UserDto {
 
     private Integer id;
+
     @NotBlank(message = "Username is required")
     @UniqueUser
     private String username;
+
     @NotBlank(message = "Password is required")
     private String password;
 }
