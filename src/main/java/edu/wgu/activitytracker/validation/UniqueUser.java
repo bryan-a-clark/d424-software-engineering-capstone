@@ -1,4 +1,4 @@
-package validation;
+package edu.wgu.activitytracker.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
