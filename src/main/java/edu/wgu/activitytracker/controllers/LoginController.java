@@ -2,6 +2,7 @@ package edu.wgu.activitytracker.controllers;
 
 import edu.wgu.activitytracker.dto.UserDto;
 import edu.wgu.activitytracker.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -20,37 +21,34 @@ public class LoginController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String getLogin(@RequestParam(value = "error", required = false) String error, Model model, CsrfToken csrfToken) {
+    public String getLogin(@RequestParam(value = "error", required = false) String error, Model model, HttpServletRequest request) {
         model.addAttribute("user", new UserDto());
-        model.addAttribute("csrfToken", csrfToken);
         if (error != null) model.addAttribute("error", "Invalid username or password. Please try again.");
-        return "login";
+
+        return "pages/login";
     }
 
     @GetMapping("/register")
-    public String getRegister(Model model, CsrfToken csrfToken) {
+    public String getRegister(Model model) {
         model.addAttribute("user", new UserDto());
-        model.addAttribute("csrfToken", csrfToken);
-        return "register";
+        return "pages/register";
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid UserDto userDto, Model model, CsrfToken csrfToken) {
+    public String postRegister(@Valid UserDto userDto, Model model) {
         if (userService.addUser(userDto)) {
             model.addAttribute("message", "User registered successfully");
         } else {
             model.addAttribute("error", "User registration failed");
         }
         model.addAttribute("user", new UserDto());
-        model.addAttribute("csrfToken", csrfToken);
-        return "register";
+        return "pages/register";
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String handleValidationExceptions(MethodArgumentNotValidException ex, Model model, CsrfToken csrfToken) {
         model.addAttribute("user", new UserDto());
-        model.addAttribute("csrfToken", csrfToken);
         model.addAttribute("error", ex.getBindingResult().getAllErrors().get(0).getDefaultMessage());
-        return "register";
+        return "pages/register";
     }
 }

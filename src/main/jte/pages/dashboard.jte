@@ -1,18 +1,17 @@
-@param java.util.List<edu.wgu.activitytracker.entities.DistanceUnit> distanceUnits
-@param java.util.List<edu.wgu.activitytracker.entities.Activity> activities
-@param org.springframework.security.web.csrf.CsrfToken csrfToken
-@param edu.wgu.activitytracker.dto.UserActivityDto userActivity
-@param edu.wgu.activitytracker.dto.UserDto user
+@import edu.wgu.activitytracker.utils.CsrfHiddenInput
+@import edu.wgu.activitytracker.entities.DistanceUnit
+@import edu.wgu.activitytracker.entities.Activity
+@import edu.wgu.activitytracker.dto.UserActivityDto
+@import edu.wgu.activitytracker.dto.UserDto
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Activity Tracker</title>
-  <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js" defer></script>
-</head>
-<body>
+@param java.util.List<DistanceUnit> distanceUnits
+@param java.util.List<Activity> activities
+@param UserActivityDto userActivity
+@param UserDto user
+@param CsrfHiddenInput csrfHiddenInput
+
+@template.layout.default(
+content = @`
   <nav class="navbar bg-primary-subtle navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Activity Tracker</a>
@@ -50,12 +49,13 @@
           </div>
           <div class="modal-body">
             <form action="/login" method="post">
+              ${csrfHiddenInput}
               <label for="activity" class="">
                 Activity:
               </label>
               <select id="activity" class="form-select">
                 <option selected>Open this select menu</option>
-                @for (edu.wgu.activitytracker.entities.Activity activity : activities)
+                @for (Activity activity : activities)
                   <option value="${activity.getId()}">${activity.getName()}</option>
                 @endfor
               </select>
@@ -91,7 +91,7 @@
               </label>
               <select id="activity" class="form-select">
                 <option selected>Open this select menu</option>
-                @for (edu.wgu.activitytracker.entities.DistanceUnit unit : distanceUnits)
+                @for (DistanceUnit unit : distanceUnits)
                   <option value="${unit.getId()}">${unit.getName()}</option>
                 @endfor
               </select>
@@ -105,8 +105,6 @@
                      id="note"
                      value="${userActivity.getNote()}"
               >
-              <input type="hidden" name="${csrfToken.getParameterName()}" value="${csrfToken.getToken()}">
-              <input type="hidden" name="${csrfToken.getParameterName()}" value="${user.getId()}">
             </form>
           </div>
           <div class="modal-footer">
@@ -117,5 +115,4 @@
       </div>
     </div>
   </main>
-</body>
-</html>
+`)
