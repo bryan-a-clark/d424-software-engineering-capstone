@@ -113,22 +113,20 @@ content = @`
       </div>
     </div>
     <script>
-        const startDate = document.getElementById("startDateTime")
-        const endDate = document.getElementById("endDateTime")
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const startDate = document.getElementById("startDateTime");
+            const endDate = document.getElementById("endDateTime");
 
-        function validateEndDate() {
-            endDate.setCustomValidity("")
-            if (!endDate.validity.valid) {
-                return;
+            function validateEndDate() {
+                if (endDate.value && startDate.value && endDate.value < startDate.value) {
+                    endDate.setCustomValidity("The end date must be after the start date");
+                } else {
+                    endDate.setCustomValidity("");
+                }
             }
 
-            if (endDate.value < startDate.value) {
-                endDate.setCustomValidity("The end date must be before the start date")
-            }
-        }
-
-        endDate.addEventListener("input", function() {
-            endDate.setCustomValidity("");
+            startDate.addEventListener("change", validateEndDate);
+            endDate.addEventListener("change", validateEndDate);
         });
     </script>
   </main>
