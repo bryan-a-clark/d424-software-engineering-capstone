@@ -7,7 +7,6 @@ import edu.wgu.activitytracker.repositories.UserRepository;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationService authenticationService;
 
     public boolean addUser(UserDto userDto) {
         var userToSave = userMapper.mapDtoToEntity(userDto);
@@ -32,8 +32,11 @@ public class UserService {
     }
 
     public User getCurrentlyLoggedInUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        return Objects.requireNonNull(userRepository.findUserByUsername(username).orElse(null));
+        return Objects.requireNonNull(userRepository.findUserByUsername(getLoggedInUsername()).orElse(null));
+    }
+
+    private String getLoggedInUsername() {
+        Authentication authentication = authenticationService.getAuthentication();
+        return authentication.getName();
     }
 }

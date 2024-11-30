@@ -27,6 +27,7 @@ class UserMapperTest extends Specification {
         returnedUser.id == userId
         returnedUser.username == username
         returnedUser.password == password
+        0 * _
     }
 
     def "MapEntityToDto test"() {
@@ -40,5 +41,6 @@ class UserMapperTest extends Specification {
         returnedUserDto.id == userId
         returnedUserDto.username == username
         returnedUserDto.password == password
+        0 * _
     }
 }

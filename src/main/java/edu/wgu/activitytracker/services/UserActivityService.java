@@ -1,7 +1,6 @@
 package edu.wgu.activitytracker.services;
 
 import edu.wgu.activitytracker.datahandlers.UserActivityMapper;
-import edu.wgu.activitytracker.datahandlers.UserMapper;
 import edu.wgu.activitytracker.dto.UserActivityDto;
 import edu.wgu.activitytracker.entities.User;
 import edu.wgu.activitytracker.repositories.UserActivityRepository;
@@ -17,7 +16,6 @@ public class UserActivityService {
     private final UserActivityRepository userActivityRepository;
     private final UserActivityMapper userActivityMapper;
     private final UserService userService;
-    private final UserMapper userMapper;
 
     public List<UserActivityDto> getLoggedInUsersUserActivities() {
         User loggedInUser = userService.getCurrentlyLoggedInUser();

@@ -83,6 +83,7 @@ class UserActivityMapperTest extends Specification {
         1 * mockUserService.getCurrentlyLoggedInUser() >> user
         1 * mockActivityService.getActivityByName(activity.getName()) >> activity
         1 * mockDistanceUnitService.getDistanceUnitByName(distanceUnit.getName()) >> distanceUnit
+        0 * _
 
         returnedEntity.id == id
         returnedEntity.user == user
