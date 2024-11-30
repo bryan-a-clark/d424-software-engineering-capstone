@@ -9,7 +9,7 @@
   <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
   <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js" defer></script>
 </head>
-<body class="container-fluid">
+<body>
   ${content}
 </body>
 </html>

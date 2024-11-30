@@ -3,6 +3,7 @@
 @import edu.wgu.activitytracker.entities.Activity
 @import edu.wgu.activitytracker.dto.UserActivityDto
 @import java.util.List
+@import gg.jte.support.ForSupport
 
 @param List<DistanceUnit> distanceUnits
 @param List<Activity> activities
@@ -34,12 +35,41 @@ content = @`
     </div>
   </nav>
   <main>
-    @for(UserActivityDto userActivityDto : userActivities)
-      ${userActivityDto.toString()}
-    @endfor
     <div class="card m-4">
       <div class="card-body">
         Activities
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Start</th>
+              <th scope="col">End</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Distance</th>
+              <th scope="col">Distance Unit</th>
+              <th scope="col">Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(var userActivityLoop : ForSupport.of(userActivities))
+              <tr>
+                <th scope="row">${userActivityLoop.getIndex() + 1}</th>
+                <td>${userActivityLoop.get().getActivityName()}</td>
+                <td>${userActivityLoop.get().getFormattedStartDateTime()}</td>
+                <td>${userActivityLoop.get().getFormattedEndDateTime()}</td>
+                <td>${userActivityLoop.get().getFormattedDuration()}</td>
+                <td>${userActivityLoop.get().getDistance()}</td>
+                <td>${userActivityLoop.get().getDistanceUnitName()}</td>
+                <td>${userActivityLoop.get().getNote()}</td>
+              </tr>
+            @else
+              <tr>
+                <td colspan="8">No activities found</td>
+              </tr>
+            @endfor
+          </tbody>
+        </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActivityModal">New Activity</button>
       </div>
     </div>
@@ -54,9 +84,9 @@ content = @`
             <form action="/dashboard/activity/new" method="post">
               ${csrfHiddenInput}
               <label for="activities">activity</label>
-              <select name="activityId" id="activities" class="form-select">
+              <select name="activityName" id="activities" class="form-select">
                 @for (Activity activity : activities)
-                  <option value="${activity.getId()}">${activity.getName()}</option>
+                  <option value="${activity.getName()}">${activity.getName()}</option>
                 @endfor
               </select>
               <label for="startDateTime" class="">
@@ -90,9 +120,9 @@ content = @`
               <label for="distanceUnit" class="">
                 Unit:
               </label>
-              <select name="distanceUnitId" id="distanceUnit" class="form-select">
+              <select name="distanceUnitName" id="distanceUnit" class="form-select">
                 @for (DistanceUnit unit : distanceUnits)
-                  <option value="${unit.getId()}">${unit.getName()}</option>
+                  <option value="${unit.getName()}">${unit.getName()}</option>
                 @endfor
               </select>
               <label for="note" class="">
