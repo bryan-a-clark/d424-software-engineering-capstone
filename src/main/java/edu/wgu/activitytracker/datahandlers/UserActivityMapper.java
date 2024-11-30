@@ -15,18 +15,17 @@ public class UserActivityMapper implements Mapper<UserActivityDto, UserActivity>
     private UserService userService;
     private ActivityService activityService;
     private DistanceUnitService distanceUnitService;
-    private UserMapper userMapper;
 
     @Override
     public UserActivity mapDtoToEntity(UserActivityDto userActivityDto) {
         return UserActivity.builder()
             .id(userActivityDto.getId())
-            .user(userMapper.mapDtoToEntity(userService.getCurrentlyLoggedInUser()))
+            .user(userService.getCurrentlyLoggedInUser())
             .activity(activityService.getActivityByName(userActivityDto.getActivityName()))
             .startDateTime(userActivityDto.getStartDateTime())
             .endDateTime(userActivityDto.getEndDateTime())
             .distance(userActivityDto.getDistance())
-            .distanceUnit(distanceUnitService.getDistanceUnitByName(userActivityDto.getActivityName()))
+            .distanceUnit(distanceUnitService.getDistanceUnitByName(userActivityDto.getDistanceUnitName()))
             .note(userActivityDto.getNote())
             .build();
     }
@@ -35,7 +34,7 @@ public class UserActivityMapper implements Mapper<UserActivityDto, UserActivity>
     public UserActivityDto mapEntityToDto(UserActivity userActivity) {
         return UserActivityDto.builder()
             .id(userActivity.getId())
-            .userId(userActivity.getId())
+            .userId(userActivity.getUser().getId())
             .activityName(userActivity.getActivity().getName())
             .startDateTime(userActivity.getStartDateTime())
             .endDateTime(userActivity.getEndDateTime())

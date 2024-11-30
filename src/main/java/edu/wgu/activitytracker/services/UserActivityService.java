@@ -20,7 +20,7 @@ public class UserActivityService {
     private final UserMapper userMapper;
 
     public List<UserActivityDto> getLoggedInUsersUserActivities() {
-        User loggedInUser = userMapper.mapDtoToEntity(userService.getCurrentlyLoggedInUser());
+        User loggedInUser = userService.getCurrentlyLoggedInUser();
         var userActivities = userActivityRepository.getUserActivitiesByUserId(loggedInUser.getId()).orElse(Collections.emptyList());
         return userActivities.stream()
             .map(userActivityMapper::mapEntityToDto)

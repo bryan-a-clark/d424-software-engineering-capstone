@@ -45,12 +45,13 @@ public class UserActivity implements Serializable {
 
     @Builder
     public UserActivity(Integer id, User user, Activity activity, LocalDateTime startDateTime, LocalDateTime endDateTime,
-                        double distance, DistanceUnit distanceUnit, String note) {
+                        Duration duration, double distance, DistanceUnit distanceUnit, String note) {
         this.id = id;
         this.user = user;
         this.activity = activity;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        this.duration = duration;
         this.distance = distance;
         this.distanceUnit = distanceUnit;
         this.note = note;

@@ -31,9 +31,9 @@ public class UserService {
         return userRepository.findUserByUsername(username).orElse(null);
     }
 
-    public UserDto getCurrentlyLoggedInUser() {
+    public User getCurrentlyLoggedInUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        return userMapper.mapEntityToDto(Objects.requireNonNull(userRepository.findUserByUsername(username).orElse(null)));
+        return Objects.requireNonNull(userRepository.findUserByUsername(username).orElse(null));
     }
 }
