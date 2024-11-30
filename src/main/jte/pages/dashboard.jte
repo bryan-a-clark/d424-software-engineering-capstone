@@ -2,12 +2,12 @@
 @import edu.wgu.activitytracker.entities.DistanceUnit
 @import edu.wgu.activitytracker.entities.Activity
 @import edu.wgu.activitytracker.dto.UserActivityDto
-@import edu.wgu.activitytracker.dto.UserDto
+@import java.util.List
 
-@param java.util.List<DistanceUnit> distanceUnits
-@param java.util.List<Activity> activities
+@param List<DistanceUnit> distanceUnits
+@param List<Activity> activities
+@param List<UserActivityDto> userActivities
 @param UserActivityDto userActivity
-@param UserDto user
 @param CsrfHiddenInput csrfHiddenInput
 
 @template.layout.default(
@@ -34,6 +34,9 @@ content = @`
     </div>
   </nav>
   <main>
+    @for(UserActivityDto userActivityDto : userActivities)
+      ${userActivityDto.toString()}
+    @endfor
     <div class="card m-4">
       <div class="card-body">
         Activities
@@ -48,13 +51,10 @@ content = @`
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="/login" method="post">
+            <form action="/dashboard/activity/new" method="post">
               ${csrfHiddenInput}
-              <label for="activity" class="">
-                Activity:
-              </label>
-              <select id="activity" class="form-select">
-                <option selected>Open this select menu</option>
+              <label for="activities">activity</label>
+              <select name="activityId" id="activities" class="form-select">
                 @for (Activity activity : activities)
                   <option value="${activity.getId()}">${activity.getName()}</option>
                 @endfor
@@ -75,6 +75,7 @@ content = @`
                      class="form-control mb-3"
                      name="endDateTime"
                      id="endDateTime"
+                     onchange="validateEndDate()"
                      value="${String.valueOf(userActivity.getEndDateTime())}"
               >
               <label for="distance" class="">
@@ -89,8 +90,7 @@ content = @`
               <label for="distanceUnit" class="">
                 Unit:
               </label>
-              <select id="activity" class="form-select">
-                <option selected>Open this select menu</option>
+              <select name="distanceUnitId" id="distanceUnit" class="form-select">
                 @for (DistanceUnit unit : distanceUnits)
                   <option value="${unit.getId()}">${unit.getName()}</option>
                 @endfor
@@ -105,14 +105,29 @@ content = @`
                      id="note"
                      value="${userActivity.getNote()}"
               >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const startDate = document.getElementById("startDateTime");
+            const endDate = document.getElementById("endDateTime");
+
+            function validateEndDate() {
+                if (endDate.value && startDate.value && endDate.value < startDate.value) {
+                    endDate.setCustomValidity("The end date must be after the start date");
+                } else {
+                    endDate.setCustomValidity("");
+                }
+            }
+
+            startDate.addEventListener("change", validateEndDate);
+            endDate.addEventListener("change", validateEndDate);
+        });
+    </script>
   </main>
 `)

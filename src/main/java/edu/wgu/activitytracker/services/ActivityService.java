@@ -15,4 +15,8 @@ public class ActivityService {
     public List<Activity> getAllActivities() {
         return activityRepository.findAll();
     }
+
+    public Activity getActivityByName(String name) {
+        return activityRepository.findByName(name);
+    }
 }

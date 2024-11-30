@@ -15,4 +15,8 @@ public class DistanceUnitService {
     public List<DistanceUnit> getAllDistanceUnits() {
         return distanceUnitRepository.findAll();
     }
+
+    public DistanceUnit getDistanceUnitByName(String name) {
+        return distanceUnitRepository.findByName(name);
+    }
 }
