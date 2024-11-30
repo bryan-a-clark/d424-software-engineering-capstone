@@ -1,27 +1,21 @@
 package edu.wgu.activitytracker.dto;
 
-import edu.wgu.activitytracker.entities.DistanceUnit;
 import jakarta.validation.constraints.NotNull;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class UserActivityDto {
 
     private Integer id;
 
-    @NotNull(message = "User ID is required")
     private Integer userId;
 
-    @NotNull(message = "Activity ID is required")
-    private Integer activityId;
+    @NotNull(message = "Activity is required")
+    private String activityName;
 
     private LocalDateTime startDateTime;
 
@@ -31,7 +25,22 @@ public class UserActivityDto {
 
     private double distance;
 
-    private DistanceUnit distanceUnit;
+    private String distanceUnitName;
 
     private String note;
+
+    @Builder
+    public UserActivityDto(String note, String distanceUnitName, double distance, Duration duration,
+                           LocalDateTime endDateTime, LocalDateTime startDateTime, String activityName,
+                           Integer userId, Integer id) {
+        this.note = note;
+        this.distanceUnitName = distanceUnitName;
+        this.distance = distance;
+        this.duration = duration;
+        this.endDateTime = endDateTime;
+        this.startDateTime = startDateTime;
+        this.activityName = activityName;
+        this.userId = userId;
+        this.id = id;
+    }
 }

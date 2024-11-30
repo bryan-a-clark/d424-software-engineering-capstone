@@ -44,8 +44,9 @@ public class UserActivity implements Serializable {
     private String note;
 
     @Builder
-    public UserActivity(User user, Activity activity, LocalDateTime startDateTime, LocalDateTime endDateTime,
+    public UserActivity(Integer id, User user, Activity activity, LocalDateTime startDateTime, LocalDateTime endDateTime,
                         double distance, DistanceUnit distanceUnit, String note) {
+        this.id = id;
         this.user = user;
         this.activity = activity;
         this.startDateTime = startDateTime;
