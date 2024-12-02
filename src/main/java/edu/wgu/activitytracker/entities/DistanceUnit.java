@@ -1,9 +1,6 @@
 package edu.wgu.activitytracker.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +17,8 @@ public class DistanceUnit implements Serializable {
     private Integer id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

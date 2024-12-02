@@ -6,7 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UniqueUserValidator implements ConstraintValidator<UniqueUser, String> {
+public class UserValidator implements ConstraintValidator<UniqueUser, String> {
 
     private final UserService userService;
 

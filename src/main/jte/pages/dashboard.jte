@@ -13,28 +13,6 @@
 
 @template.layout.default(
 content = @`
-  <nav class="navbar bg-primary-subtle navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Activity Tracker</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <button class="btn btn-outline-primary">Logout</button>
-      </div>
-    </div>
-  </nav>
-  <main>
     <div class="card m-4">
       <div class="card-body">
         Activities
@@ -62,6 +40,8 @@ content = @`
                 <td>${userActivityLoop.get().getDistance()}</td>
                 <td>${userActivityLoop.get().getDistanceUnitName()}</td>
                 <td>${userActivityLoop.get().getNote()}</td>
+                <td><a href="#">edit</a></td>
+                <td><a href="#">delete</a></td>
               </tr>
             @else
               <tr>
@@ -71,6 +51,7 @@ content = @`
           </tbody>
         </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActivityModal">New Activity</button>
+        <a class="btn btn-primary" href="/distance-units/all">Distance Units</a>
       </div>
     </div>
     <div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="addActivityModalLabel" aria-hidden="true">
@@ -159,5 +140,4 @@ content = @`
             endDate.addEventListener("change", validateEndDate);
         });
     </script>
-  </main>
 `)

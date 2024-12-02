@@ -8,11 +8,11 @@ import spock.lang.Specification
 class UniqueUserValidatorTest extends Specification {
 
     private UserService mockUserService
-    private UniqueUserValidator uniqueUserValidator
+    private UserValidator uniqueUserValidator
 
     def setup() {
         mockUserService = Mock(UserService.class)
-        uniqueUserValidator = new UniqueUserValidator(mockUserService)
+        uniqueUserValidator = new UserValidator(mockUserService)
     }
 
     def "test IsValid"() {
