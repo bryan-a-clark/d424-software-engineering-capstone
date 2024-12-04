@@ -51,7 +51,8 @@ content = @`
           </tbody>
         </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActivityModal">New Activity</button>
-        <a class="btn btn-primary" href="/distance-units/all">Distance Units</a>
+        <a class="btn btn-primary" href="/distance-units">Distance Units</a>
+        <a class="btn btn-primary" href="/activities">Activities</a>
       </div>
     </div>
     <div class="modal fade" id="addActivityModal" tabindex="-1" aria-labelledby="addActivityModalLabel" aria-hidden="true">

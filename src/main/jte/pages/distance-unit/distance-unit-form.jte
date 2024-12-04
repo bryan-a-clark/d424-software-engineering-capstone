@@ -26,7 +26,7 @@ content = @`
                placeholder="Unit Name"
         >
         <button class="btn btn-primary" type="submit">Save</button>
-        <a class="btn btn-outline-primary" href="/distance-units/all">Cancel</a>
+        <a class="btn btn-outline-primary" href="/distance-units">Cancel</a>
       </form>
       @if (errors != null)
         <div class="alert alert-danger mt-3" role="alert">

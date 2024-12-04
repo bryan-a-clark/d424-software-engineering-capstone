@@ -19,10 +19,10 @@ public class DistanceUnitController {
 
     private final DistanceUnitService distanceUnitService;
 
-    @GetMapping("/all")
+    @GetMapping
     public String getAllDistanceUnits(Model model) {
         model.addAttribute("distanceUnits", distanceUnitService.getAllDistanceUnitsByLoggedInUser());
-        return "pages/distance-unit/distance-units";
+        return "pages/distance-unit/distance-units-list";
     }
 
     @GetMapping("/add")
@@ -31,13 +31,11 @@ public class DistanceUnitController {
         return "pages/distance-unit/distance-unit-form";
     }
 
-
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Integer id, Model model) {
         model.addAttribute("distanceUnit", distanceUnitService.getDistanceUnitById(id));
         return "pages/distance-unit/distance-unit-form";
     }
-
 
     @PostMapping("/save")
     public String saveDistanceUnit(@Valid DistanceUnitDto distanceUnitDto, BindingResult bindingResult, Model model) {
@@ -47,12 +45,12 @@ public class DistanceUnitController {
             return "pages/distance-unit/distance-unit-form";
         }
         distanceUnitService.saveDistanceUnit(distanceUnitDto);
-        return "redirect:/distance-units/all";
+        return "redirect:/distance-units";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteDistanceUnit(@PathVariable Integer id) {
         distanceUnitService.deleteDistanceUnit(id);
-        return "redirect:/distance-units/all";
+        return "redirect:/distance-units";
     }
 }
