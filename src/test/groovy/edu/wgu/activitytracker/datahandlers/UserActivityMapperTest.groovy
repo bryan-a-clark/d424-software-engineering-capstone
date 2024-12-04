@@ -54,11 +54,11 @@ class UserActivityMapperTest extends Specification {
 
         activityId = 3
         activityName = "activity"
-        activity = new Activity(activityId, activityName)
+        activity = new Activity(activityId, activityName, new User())
 
         distanceUnitId = 4
         distanceUnitName = "Yard"
-        distanceUnit = new DistanceUnit(distanceUnitId, distanceUnitName)
+        distanceUnit = new DistanceUnit(distanceUnitId, distanceUnitName, new User())
     }
 
 
