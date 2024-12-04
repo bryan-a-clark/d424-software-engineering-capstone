@@ -6,12 +6,14 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS activity (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    user_id INT REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS distance_unit (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    user_id INT REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS user_activity (
