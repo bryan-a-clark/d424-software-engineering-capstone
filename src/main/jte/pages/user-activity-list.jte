@@ -10,7 +10,8 @@
 content = @`
     <div class="card m-4">
       <div class="card-body">
-        <table class="table caption-top">
+        <input type="text" id="search-input" onkeyup="searchActivities()" placeholder="Search for Activities by name.." style="width: 25%;">
+        <table id="activities-table" class="table caption-top">
           <caption>User Activities</caption>
           <thead>
             <tr>
@@ -53,4 +54,25 @@ content = @`
         <a class="btn btn-primary" href="/activities">Activities</a>
       </div>
     </div>
+  <script>
+      function searchActivities() {
+          let input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("search-input");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("activities-table");
+          tr = table.getElementsByTagName("tr");
+
+          for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                  } else {
+                      tr[i].style.display = "none";
+                  }
+              }
+          }
+      }
+  </script>
 `, csrfHiddenInput = csrfHiddenInput)
