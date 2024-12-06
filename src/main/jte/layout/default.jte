@@ -1,4 +1,7 @@
+@import edu.wgu.activitytracker.utils.CsrfHiddenInput
 @param gg.jte.Content content
+
+@param CsrfHiddenInput csrfHiddenInput
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +20,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div>
-        <button class="btn btn-outline-primary">Logout</button>
+        <form action="/logout" method="POST">
+          ${csrfHiddenInput}
+          <button class="btn btn-outline-primary" type="submit">Logout</button>
+        </form>
       </div>
     </div>
   </nav>

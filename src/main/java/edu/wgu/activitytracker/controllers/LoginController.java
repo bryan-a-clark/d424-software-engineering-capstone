@@ -21,17 +21,13 @@ public class LoginController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String getLogin(@RequestParam(value = "error", required = false) String error, Model model, HttpServletRequest request) {
+    public String getLogin(
+        @RequestParam(value = "error", required = false) String error,
+        @RequestParam(value = "logout", required = false) String logout, Model model, HttpServletRequest request) {
         model.addAttribute("user", new UserDto());
         if (error != null) model.addAttribute("error", "Invalid username or password. Please try again.");
-
+        model.addAttribute("logout", logout);
         return "pages/login";
-    }
-
-    @GetMapping("/register")
-    public String getRegister(Model model) {
-        model.addAttribute("user", new UserDto());
-        return "pages/register";
     }
 
     @PostMapping("/register")
@@ -43,6 +39,17 @@ public class LoginController {
         }
         model.addAttribute("user", new UserDto());
         return "pages/register";
+    }
+
+    @GetMapping("/register")
+    public String getRegister(Model model) {
+        model.addAttribute("user", new UserDto());
+        return "pages/register";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "pages/logout";
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
