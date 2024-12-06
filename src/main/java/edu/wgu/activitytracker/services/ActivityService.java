@@ -17,12 +17,6 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper;
 
-    public List<ActivityDto> getAllActivities() {
-        return activityRepository.findAll().stream()
-            .map(activityMapper::mapEntityToDto)
-            .toList();
-    }
-
     public List<ActivityDto> getAllActivitiesByLoggedInUser() {
         var activities = activityRepository.findAllByUserId(userService.getCurrentlyLoggedInUser().getId()).orElse(Collections.emptyList());
         return activities.stream()

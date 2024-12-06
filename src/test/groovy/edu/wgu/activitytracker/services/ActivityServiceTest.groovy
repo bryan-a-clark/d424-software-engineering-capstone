@@ -16,15 +16,6 @@ class ActivityServiceTest extends Specification {
         activityService = new ActivityService(mockUserService, mockActivityRepository, mockActivityMapper)
     }
 
-    def "GetAllActivities test"() {
-        when:
-        activityService.getAllActivities()
-
-        then:
-        1 * mockActivityRepository.findAll()
-        0 * _
-    }
-
     def "GetActivityByName"() {
         given:
         String name = "name"

@@ -18,15 +18,6 @@ class DistanceUnitServiceTest extends Specification {
         distanceUnitService = new DistanceUnitService(mockUserService, mockDistanceUnitMapper, mockDistanceUnitRepository)
     }
 
-    def "GetAllDistanceUnit test"() {
-        when:
-        distanceUnitService.getAllDistanceUnits()
-
-        then:
-        1 * mockDistanceUnitRepository.findAll()
-        0 * _
-    }
-
     def "GetDistanceUnitByName test"() {
         given:
         String unitName = "name"
