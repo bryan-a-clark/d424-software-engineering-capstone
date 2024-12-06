@@ -1,6 +1,7 @@
 package edu.wgu.activitytracker.dto;
 
-import edu.wgu.activitytracker.validation.EndDateAfterStartDate;
+import edu.wgu.activitytracker.utils.DurationFormatter;
+import edu.wgu.activitytracker.validation.EndDateTimeAfterStartDateTime;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import java.time.Duration;
@@ -11,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EndDateAfterStartDate
+@EndDateTimeAfterStartDateTime
 public class UserActivityDto {
 
     private Integer id;
@@ -64,10 +65,6 @@ public class UserActivityDto {
         if (duration == null) {
             return null;
         }
-        long hours = duration.toHours();
-        long minutes = duration.minusHours(hours).toMinutes();
-        long seconds = duration.minusHours(hours).minusMinutes(minutes).getSeconds();
-
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return DurationFormatter.getFormattedDuration(duration);
     }
 }

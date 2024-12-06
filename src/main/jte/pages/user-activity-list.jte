@@ -52,6 +52,7 @@ content = @`
         <a class="btn btn-primary" href="/user-activities/add">New User Activity</a>
         <a class="btn btn-primary" href="/distance-units">Distance Units</a>
         <a class="btn btn-primary" href="/activities">Activities</a>
+        <a class="btn btn-primary" href="/report">Generate Report</a>
       </div>
     </div>
   <script>

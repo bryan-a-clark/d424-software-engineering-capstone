@@ -1,13 +1,10 @@
 @import edu.wgu.activitytracker.utils.CsrfHiddenInput
 @import edu.wgu.activitytracker.dto.UserDto
-@import java.util.List
-@import org.springframework.validation.ObjectError
 
 @param UserDto user
 @param CsrfHiddenInput csrfHiddenInput
 @param String error = null
 @param String success = null
-@param List<ObjectError> errors
 
 <!DOCTYPE html>
 <html lang="en">

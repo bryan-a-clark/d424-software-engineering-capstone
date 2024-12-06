@@ -7,12 +7,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = ReportValidator.class)
+@Constraint(validatedBy = UserActivityValidator.class)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EndDateAfterStartDate {
+public @interface EndDateTimeAfterStartDateTime {
 
-    String message() default "End date must be after start date";
+    String message() default "End date time must be after start date time";
 
     Class<?>[] groups() default {};
 
