@@ -6,7 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserActivityValidator implements ConstraintValidator<EndDateAfterStartDate, UserActivityDto> {
+public class UserActivityValidator implements ConstraintValidator<EndDateTimeAfterStartDateTime, UserActivityDto> {
 
     @Override
     public boolean isValid(UserActivityDto userActivityDto, ConstraintValidatorContext constraintValidatorContext) {

@@ -76,7 +76,7 @@ content = @`
       @if (errors != null)
         <div class="alert alert-danger mt-3" role="alert">
           @for (var error : errors)
-            <span>${error.getDefaultMessage()}</span>
+            <span>${error.getDefaultMessage()}</span><br>
           @endfor
         </div>
       @endif
