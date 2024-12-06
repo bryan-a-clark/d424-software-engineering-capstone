@@ -1,6 +1,8 @@
 package edu.wgu.activitytracker.dto;
 
+import edu.wgu.activitytracker.validation.EndDateAfterStartDate;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EndDateAfterStartDate
 public class UserActivityDto {
 
     private Integer id;
@@ -18,8 +21,10 @@ public class UserActivityDto {
     @NotNull(message = "Activity is required")
     private String activityName;
 
+    @Past
     private LocalDateTime startDateTime;
 
+    @Past
     private LocalDateTime endDateTime;
 
     private Duration duration;

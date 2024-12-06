@@ -11,7 +11,7 @@ content = @`
 <div class="m-3">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="/user-activities">User Activities</a></li>
       <li class="breadcrumb-item active" aria-current="page">Distance Units</li>
     </ol>
   </nav>
