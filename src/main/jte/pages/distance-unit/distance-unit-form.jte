@@ -37,4 +37,4 @@ content = @`
       @endif
     </div>
   </div>
-`)
+`, csrfHiddenInput = csrfHiddenInput)

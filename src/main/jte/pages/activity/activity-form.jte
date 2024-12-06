@@ -4,8 +4,8 @@
 @import org.springframework.validation.ObjectError
 
 @param ActivityDto activity
-@param CsrfHiddenInput csrfHiddenInput
 @param List<ObjectError> errors
+@param CsrfHiddenInput csrfHiddenInput
 
 @template.layout.default(
 content = @`
@@ -37,4 +37,4 @@ content = @`
       @endif
     </div>
   </div>
-`)
+`, csrfHiddenInput = csrfHiddenInput)

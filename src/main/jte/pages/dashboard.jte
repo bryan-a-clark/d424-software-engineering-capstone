@@ -141,4 +141,4 @@ content = @`
             endDate.addEventListener("change", validateEndDate);
         });
     </script>
-`)
+`, csrfHiddenInput = csrfHiddenInput)

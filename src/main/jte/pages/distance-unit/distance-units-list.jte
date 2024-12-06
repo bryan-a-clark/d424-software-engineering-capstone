@@ -1,8 +1,10 @@
+@import edu.wgu.activitytracker.utils.CsrfHiddenInput
 @import java.util.List
 @import edu.wgu.activitytracker.dto.DistanceUnitDto
 @import gg.jte.support.ForSupport
 
 @param List<DistanceUnitDto> distanceUnits
+@param CsrfHiddenInput csrfHiddenInput
 
 @template.layout.default(
 content = @`
@@ -51,4 +53,4 @@ content = @`
     <a class="btn btn-primary" href="/distance-units/add">New Distance Unit</a>
   </div>
 </div>
-`)
+`, csrfHiddenInput = csrfHiddenInput)

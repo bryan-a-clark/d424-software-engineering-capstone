@@ -1,7 +1,9 @@
 @import java.util.List
 @import edu.wgu.activitytracker.dto.ActivityDto
 @import gg.jte.support.ForSupport
+@import edu.wgu.activitytracker.utils.CsrfHiddenInput
 
+@param CsrfHiddenInput csrfHiddenInput
 @param List<ActivityDto> activities
 
 @template.layout.default(
@@ -51,4 +53,4 @@ content = @`
       <a class="btn btn-primary" href="/activities/add">New Activity</a>
     </div>
   </div>
-`)
+`, csrfHiddenInput = csrfHiddenInput)
