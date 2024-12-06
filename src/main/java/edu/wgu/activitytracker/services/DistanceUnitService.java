@@ -17,10 +17,6 @@ public class DistanceUnitService {
     private final DistanceUnitMapper distanceUnitMapper;
     private final DistanceUnitRepository distanceUnitRepository;
 
-    public List<DistanceUnit> getAllDistanceUnits() {
-        return distanceUnitRepository.findAll();
-    }
-
     public List<DistanceUnitDto> getAllDistanceUnitsByLoggedInUser() {
         var distanceUnits = distanceUnitRepository.findAllByUserId(userService.getCurrentlyLoggedInUser().getId()).orElse(Collections.emptyList());
         return distanceUnits.stream()

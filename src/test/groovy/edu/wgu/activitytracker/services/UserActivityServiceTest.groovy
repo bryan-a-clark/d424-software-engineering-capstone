@@ -63,7 +63,7 @@ class UserActivityServiceTest extends Specification {
         var userActivity = new UserActivity()
 
         when:
-        userActivityService.addUserActivity(userActivityDto)
+        userActivityService.saveUserActivity(userActivityDto)
 
         then:
         1 * mockUserActivityMapper.mapDtoToEntity(userActivityDto) >> userActivity

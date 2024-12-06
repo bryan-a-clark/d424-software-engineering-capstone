@@ -25,7 +25,19 @@ public class UserActivityService {
             .toList();
     }
 
-    public void addUserActivity(UserActivityDto userActivityDto) {
+    public UserActivityDto getActivityById(Integer id) {
+        var savedUserActivity = userActivityRepository.findById(id).orElse(null);
+        if (savedUserActivity != null) {
+            return userActivityMapper.mapEntityToDto(savedUserActivity);
+        }
+        return null;
+    }
+
+    public void saveUserActivity(UserActivityDto userActivityDto) {
         userActivityRepository.save(userActivityMapper.mapDtoToEntity(userActivityDto));
+    }
+
+    public void deleteUserActivity(Integer userActivityId) {
+        userActivityRepository.deleteById(userActivityId);
     }
 }

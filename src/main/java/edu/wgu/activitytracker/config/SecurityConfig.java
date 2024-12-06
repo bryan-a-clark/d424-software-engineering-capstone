@@ -26,17 +26,19 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorize -> authorize
                 .dispatcherTypeMatchers(DispatcherType.ASYNC, DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-                .requestMatchers("/register").permitAll()
+                .requestMatchers("/user/register").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/dashboard", true)
+                .defaultSuccessUrl("/user-activities", true)
                 .failureUrl("/login?error")
                 .permitAll()
             )
             .logout(logout -> logout
-                .logoutSuccessUrl("/login?logout"))
+                .permitAll()
+                .logoutSuccessUrl("/logout")
+            )
             .build();
     }
 }

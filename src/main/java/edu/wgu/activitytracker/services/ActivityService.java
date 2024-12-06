@@ -17,10 +17,6 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper;
 
-    public List<Activity> getAllActivities() {
-        return activityRepository.findAll();
-    }
-
     public List<ActivityDto> getAllActivitiesByLoggedInUser() {
         var activities = activityRepository.findAllByUserId(userService.getCurrentlyLoggedInUser().getId()).orElse(Collections.emptyList());
         return activities.stream()

@@ -1,12 +1,29 @@
 @import edu.wgu.activitytracker.utils.CsrfHiddenInput
 @import edu.wgu.activitytracker.dto.UserDto
+@import java.util.List
+@import org.springframework.validation.ObjectError
 
 @param UserDto user
 @param CsrfHiddenInput csrfHiddenInput
 @param String error = null
+@param String success = null
+@param List<ObjectError> errors
 
-@template.layout.default(
-content = @`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Tracker</title>
+  <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js" defer></script>
+</head>
+<body>
+  <nav class="navbar bg-primary-subtle navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/login">Activity Tracker</a>
+    </div>
+  </nav>
   <main>
     <div class="mt-5">
       <div class="card p-3 mx-auto" style="width: 25rem;">
@@ -25,18 +42,18 @@ content = @`
                    value="${user.getUsername()}"
                    required
                    autofocus>
-              <label for="password" class="visually-hidden">
-                Password
-              </label>
-              <input type="password"
-                     class="form-control mb-3"
-                     name="password"
-                     placeholder="Password"
-                     id="password"
-                     value="${user.getPassword()}"
-                     required>
-              <button type="submit" class="btn btn-primary">Log in</button>
-              <a href="/register" class="btn btn-primary">Register</a>
+            <label for="password" class="visually-hidden">
+              Password
+            </label>
+            <input type="password"
+                   class="form-control mb-3"
+                   name="password"
+                   placeholder="Password"
+                   id="password"
+                   value="${user.getPassword()}"
+                   required>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <a href="/user/register" class="btn btn-primary">Register</a>
           </form>
         </div>
       </div>
@@ -46,5 +63,11 @@ content = @`
         ${error}
       </div>
     @endif
+    @if(success != null)
+      <div class="text-center text-success">
+        ${success}
+      </div>
+    @endif
   </main>
-`)
+</body>
+</html>
