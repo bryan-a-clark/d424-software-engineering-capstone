@@ -1,9 +1,13 @@
 @import edu.wgu.activitytracker.utils.CsrfHiddenInput
 @import edu.wgu.activitytracker.dto.UserDto
+@import java.util.List
+@import org.springframework.validation.ObjectError
 
 @param UserDto user
 @param CsrfHiddenInput csrfHiddenInput
 @param String error = null
+@param String success = null
+@param List<ObjectError> errors
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +19,11 @@
   <script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.js" defer></script>
 </head>
 <body>
+  <nav class="navbar bg-primary-subtle navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/login">Activity Tracker</a>
+    </div>
+  </nav>
   <main>
     <div class="mt-5">
       <div class="card p-3 mx-auto" style="width: 25rem;">
@@ -44,7 +53,7 @@
                    value="${user.getPassword()}"
                    required>
             <button type="submit" class="btn btn-primary">Log in</button>
-            <a href="/register" class="btn btn-primary">Register</a>
+            <a href="/user/register" class="btn btn-primary">Register</a>
           </form>
         </div>
       </div>
@@ -52,6 +61,11 @@
     @if(error != null)
       <div class="text-center text-danger">
         ${error}
+      </div>
+    @endif
+    @if(success != null)
+      <div class="text-center text-success">
+        ${success}
       </div>
     @endif
   </main>
