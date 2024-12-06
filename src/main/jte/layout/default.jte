@@ -27,8 +27,6 @@
       </div>
     </div>
   </nav>
-  <main>
-    ${content}
-  </main>
+  ${content}
 </body>
 </html>
